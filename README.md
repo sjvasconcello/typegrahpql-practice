@@ -1,11 +1,11 @@
 # typegrahpql-practice
 
 Practice TypeStript, Graphql with TypeGraphQL with @benaward playlist in Youtube
+Link: <https://www.youtube.com/watch?v=8yZImm2A1KE&t=477s>
 
 ---
 
-## TypeGraphQL Setup
+## To Do List
 
-Link: <https://www.youtube.com/watch?v=8yZImm2A1KE&t=477s>
-
-Levantamos el servidor con express, apollo-server y typescript
+- [x] TypeGraphQL Setup
+- [X] Register Resolver
