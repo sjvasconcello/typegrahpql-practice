@@ -11,14 +11,20 @@ import { RegisterResolver } from "./modules/user/Register";
 import { redis } from "./redis";
 import { LoginResolver } from "./modules/user/Login";
 import { MeResolver } from "./modules/user/Me";
+import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver, MeResolver],
-    authChecker: ({ context: {req}}) => {
-      return !!req.session.userId
+    resolvers: [
+      RegisterResolver,
+      LoginResolver,
+      MeResolver,
+      ConfirmUserResolver
+    ],
+    authChecker: ({ context: { req } }) => {
+      return !!req.session.userId;
     }
   });
 
@@ -33,10 +39,12 @@ const main = async () => {
   const RedisStore = connectRedis(session);
 
   //Cors
-  app.use(cors({
-    credentials: true,
-    origin: "http://localhost:3000"
-  }));
+  app.use(
+    cors({
+      credentials: true,
+      origin: "http://localhost:3000"
+    })
+  );
 
   //Session -middleware
   app.use(
@@ -54,7 +62,7 @@ const main = async () => {
         maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
       }
     })
-);
+  );
 
   apolloServer.applyMiddleware({ app });
 
