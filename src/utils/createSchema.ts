@@ -1,6 +1,7 @@
 import { buildSchema } from "type-graphql";
 import { ChangePasswordInput } from "../modules/user/changePassword/ChangePasswordInput";
 import { ConfirmUserResolver } from "../modules/user/ConfirmUser";
+import { CreateUserResolver } from "../modules/user/CreateUser";
 import { ForgotPasswordResolver } from "../modules/user/ForgotPassword";
 import { LoginResolver } from "../modules/user/Login";
 import { LogoutResolver } from "../modules/user/Logout";
@@ -16,7 +17,8 @@ export const createSchema = () =>
       LoginResolver,
       LogoutResolver,
       MeResolver,
-      RegisterResolver
+      RegisterResolver,
+      CreateUserResolver
     ],
     authChecker: ({ context: { req } }) => {
       return !!req.session.userId;
