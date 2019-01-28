@@ -1,7 +1,7 @@
 import { ObjectType } from "type-graphql";
 import { BaseEntity, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Author } from "./Author";
-import { Book } from "./Books";
+import { Book } from "./Book";
 
 @ObjectType()
 @Entity()

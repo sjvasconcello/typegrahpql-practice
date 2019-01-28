@@ -8,6 +8,7 @@ import "reflect-metadata";
 import { formatArgumentValidationError } from "type-graphql";
 import { createConnection } from "typeorm";
 import { redis } from "./redis";
+import { createAuthorsLoader } from "./utils/authorsLoader";
 import { createSchema } from "./utils/createSchema";
 
 const main = async () => {
@@ -18,7 +19,11 @@ const main = async () => {
   const apolloServer = new ApolloServer({
     schema,
     formatError: formatArgumentValidationError,
-    context: ({ req, res }: any) => ({ req, res }),
+    context: ({ req, res }: any) => ({
+      req,
+      res,
+      authorsLoader: createAuthorsLoader()
+    }),
     validationRules: [
       queryComplexity({
         maximumComplexity: 8,
